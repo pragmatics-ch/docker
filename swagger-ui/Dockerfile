@@ -1,8 +1,8 @@
 FROM mhart/alpine-node
 MAINTAINER Nicolas Schwarzentrub "nicolas.schwarzentrub@gmail.com"
 
-ENV VERSION "v2.1.4"
-ENV FOLDER "swagger-ui-2.1.4"
+ENV VERSION "v2.1.8-M1."
+ENV FOLDER "swagger-ui"
 ENV API_URL "http://petstore.swagger.io/v2/swagger.json"
 ENV API_KEY "**None**"
 ENV SWAGGER_JSON "/app/swagger.json"
@@ -11,7 +11,7 @@ WORKDIR /app
 
 RUN apk update && apk add openssl
 RUN wget -qO- https://github.com/swagger-api/swagger-ui/archive/$VERSION.tar.gz | tar xvz
-RUN cp -r $FOLDER/dist/* . && rm -rf $FOLDER
+RUN cp -r $FOLDER-$VERSION/dist/* . && rm -rf $FOLDER-$VERSION
 RUN npm install -g http-server
 RUN apk del openssl
 
